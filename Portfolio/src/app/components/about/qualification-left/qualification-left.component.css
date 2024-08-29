@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.qualification_data {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  column-gap: 1.5rem;
+}
+
+.qualification_title {
+  font-size: 1.4rem;
+  color: #191627;
+  font-weight: 500;
+}
+
+.qualification_subtitle {
+  display: inline-block;
+  font-size: 1rem;
+  color: #191627;
+  margin-bottom: 1rem;
+}
+
+.qualification_calendar {
+  font-size: 1rem;
+  color: #a19fad;
+}
+
+.qualification_rounder {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-color: #6e57e0;
+  border-radius: 50%;
+}
+
+.qualification_line {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: #6e57e0;
+  transform: translate(6px, -7px);
+}
+
+/* ===== Dark Theme ===== */
+
+.qualification_title.dark,
+.qualification_subtitle.dark {
+  color: #fff;
+}
