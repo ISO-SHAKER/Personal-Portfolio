@@ -22,6 +22,11 @@ const getAboutData = asyncWrapper(async (req, res, next) => {
 });
 
 const updateAboutData = asyncWrapper(async (req, res, next) => {
+
+  if (req.file) {
+    req.body.imageSrc = req.file.filename;
+  }
+  
   let updatedData = await About.findByIdAndUpdate(
     req.params.id,
     { $set: req.body },
