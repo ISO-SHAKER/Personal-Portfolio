@@ -43,13 +43,14 @@ const addProject = asyncWrapper(async (req, res, next) => {
     return next(error);
   }
 
-  const { title, modalTitle, description, features, imageSrc } = req.body;
+  const { title, modalTitle, description, githubURL, features, imageSrc } = req.body;
   const newProject = new Project({
     title,
     modalTitle,
     description,
     features,
     imageSrc,
+    githubURL
   });
   await newProject.save();
   res.status(201).json({
