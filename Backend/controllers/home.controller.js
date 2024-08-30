@@ -22,6 +22,11 @@ const getHomeData = asyncWrapper(async (req, res, next) => {
 });
 
 const updateHomeData = asyncWrapper(async (req, res, next) => {
+
+  if (req.file) {
+    req.body.imageSrc = req.file.filename;
+  }
+  
   let updatedData = await Home.findByIdAndUpdate(
     req.params.id,
     { $set: req.body },
