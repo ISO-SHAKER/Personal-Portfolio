@@ -1,0 +1,104 @@
+<div class="details">
+  <div class="recentOrders">
+    <div>
+      <div class="cardHeader">
+        <h2>Services</h2>
+        <div class="addMemberBtn">
+          <button type="button" (click)="addService.emit()">New Service</button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr class="heading">
+            <th>SL No</th>
+            <th>Title</th>
+            <th>Model Title</th>
+            <th>Description</th>
+            <th>Provisions</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="services.length === 0" class="employeeDetails">
+            <td class="empty" colspan="6" align="center">
+              No data available in table
+            </td>
+          </tr>
+          <tr
+            *ngFor="let service of services; let i = index"
+            class="serviceDetails"
+          >
+            <td>{{ startIndex + i + 1 }}</td>
+            <td>{{ service.title }}</td>
+            <td>{{ service.modalTitle }}</td>
+            <td>{{ service.modalDescription }}</td>
+            <td class="provisions-data">
+              <ul>
+                @for (provision of service.provisions; track $index) {
+                <li>
+                  <i class="uil uil-check-circle"></i>
+                  {{ provision }}
+                </li>
+                }
+              </ul>
+            </td>
+            <td>
+              <button
+                type="button"
+                id="readBtn"
+                (click)="readService.emit(service)"
+              >
+                <i class="uil uil-eye"></i>
+              </button>
+              <button
+                type="button"
+                id="editBtn"
+                (click)="editService.emit({ index: i, service: service })"
+              >
+                <i class="uil uil-edit"></i>
+              </button>
+              <button
+                type="button"
+                id="deleteBtn"
+                (click)="deleteService.emit(i)"
+              >
+                <i class="uil uil-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer id="footer">
+      <span class="showEntries"
+        >Showing {{ startIndex + 1 }} to {{ endIndex }} of
+        {{ totalEntries }} entries</span
+      >
+      <div class="pagination">
+        <button
+          type="button"
+          (click)="prev.emit()"
+          [disabled]="currentIndex === 1"
+        >
+          <i class="uil uil-angle-left-b"></i>
+        </button>
+        <button
+          type="button"
+          *ngFor="let i of [].constructor(maxIndex); let idx = index"
+          (click)="pageChange.emit(idx + 1)"
+        >
+          {{ idx + 1 }}
+        </button>
+        <button
+          type="button"
+          (click)="next.emit()"
+          [disabled]="currentIndex === maxIndex"
+        >
+          <i class="uil uil-angle-right-b"></i>
+        </button>
+      </div>
+    </footer>
+  </div>
+</div>

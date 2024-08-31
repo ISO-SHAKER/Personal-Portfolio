@@ -1,0 +1,27 @@
+<app-education-table
+  [educations]="paginatedData"
+  [startIndex]="startIndex"
+  [endIndex]="endIndex"
+  [totalEntries]="arrayLength"
+  [currentIndex]="currentIndex"
+  [maxIndex]="maxIndex"
+  (addEducation)="addEducation()"
+  (readEducation)="readEducation($event)"
+  (editEducation)="editEducation($event.index, $event.education)"
+  (deleteEducation)="deleteEducation($event)"
+  (pageChange)="paginationBtn($event)"
+  (prev)="prev()"
+  (next)="next()"
+></app-education-table>
+
+<app-education-form
+  [myForm]="myForm"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+></app-education-form>

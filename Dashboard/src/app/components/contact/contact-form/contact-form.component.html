@@ -1,0 +1,74 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">{{ modalTitle }}</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="myForm">
+        <div class="inputFieldContainer">
+          <div class="form_control">
+            <label for="contactPhone">Phone:</label>
+            <input
+              type="text"
+              id="contactPhone"
+              formControlName="contactPhone"
+            />
+            @if(myForm.get('contactPhone')?.invalid &&
+            myForm.get('contactPhone')?.touched){
+            @if(myForm.get('contactPhone')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ contact phone is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form_control">
+            <label for="contactEmail">Email:</label>
+            <input
+              type="email"
+              id="contactEmail"
+              formControlName="contactEmail"
+            />
+            @if(myForm.get('contactEmail')?.invalid &&
+            myForm.get('contactEmail')?.touched){
+            @if(myForm.get('contactEmail')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ contact email is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form_control">
+            <label for="contactLocation">Location:</label>
+            <input
+              type="text"
+              id="contactLocation"
+              formControlName="contactLocation"
+            />
+            @if(myForm.get('contactLocation')?.invalid &&
+            myForm.get('contactLocation')?.touched){
+            @if(myForm.get('contactLocation')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ contact location is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter" [class.active]="popupFooterActive">
+      <button
+        type="submit"
+        class="submitBtn"
+        [class.active]="popupBtnActive"
+        [disabled]="myForm.invalid"
+        (click)="onSubmit.emit()"
+      >
+        {{ modalButton }}
+      </button>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<app-home-table
+  [homeData]="homeData"
+  [imageURL]="imageURL"
+  (editData)="editData()"
+></app-home-table>
+
+<app-home-form
+  [myForm]="myForm"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  [selectedImage]="this.homeData.imageSrc"
+  [imageURL]="imageURL"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+  (onFileChange)="onFileChange($event)"
+></app-home-form>

@@ -1,0 +1,97 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" id="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">{{ modalTitle }}</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="myForm">
+        <div class="inputFieldContainer">
+          <div class="form_control">
+            <label for="serviceTitle">Title:</label>
+            <input
+              type="text"
+              id="serviceTitle"
+              formControlName="serviceTitle"
+            />
+            @if(myForm.get('serviceTitle')?.invalid &&
+            myForm.get('serviceTitle')?.touched){
+            @if(myForm.get('serviceTitle')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ service title is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form_control">
+            <label for="serviceModalTitle">Modal Title:</label>
+            <input
+              type="text"
+              id="serviceModalTitle"
+              formControlName="serviceModalTitle"
+            />
+            @if(myForm.get('serviceModalTitle')?.invalid &&
+            myForm.get('serviceModalTitle')?.touched){
+            @if(myForm.get('serviceModalTitle')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ service modal title is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form_control">
+            <label for="serviceDescription">Description:</label>
+            <textarea
+              name=""
+              id="serviceDescription"
+              cols="30"
+              formControlName="serviceDescription"
+            ></textarea>
+            @if(myForm.get('serviceDescription')?.invalid &&
+            myForm.get('serviceDescription')?.touched){
+            @if(myForm.get('serviceDescription')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ service description is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form-field">
+            <div
+              class="form_control"
+              id="provisions-control"
+              formArrayName="provisions"
+            >
+              <label for="provisions">Provisions</label>
+              <div class="provisions-container">
+                <input
+                  type="text"
+                  id="provisions"
+                  class="provisions"
+                  *ngFor="let provision of provisions?.controls; let i = index"
+                  [formControlName]="i"
+                />
+              </div>
+            </div>
+          </div>
+          <button id="addProvision" type="button" (click)="addProvision.emit()">
+            Add Provision
+          </button>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter" [class.active]="popupFooterActive">
+      <button
+        type="submit"
+        class="submitBtn"
+        [class.active]="popupBtnActive"
+        [disabled]="myForm.invalid"
+        (click)="onSubmit.emit()"
+      >
+        {{ modalButton }}
+      </button>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="details">
+  <div class="recentOrders">
+    <div>
+      <div class="cardHeader">
+        <h2>Work</h2>
+        <div class="addMemberBtn">
+          <button type="button" (click)="addWork.emit()">New Work</button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr class="heading">
+            <th>SL No</th>
+            <th>Main Title</th>
+            <th>Sub Title</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="works.length === 0" class="employeeDetails">
+            <td class="empty" colspan="6" align="center">
+              No data available in table
+            </td>
+          </tr>
+          <tr *ngFor="let work of works; let i = index" class="employeeDetails">
+            <td>{{ startIndex + i + 1 }}</td>
+
+            <td>{{ work.mainTitle }}</td>
+            <td>{{ work.subTitle }}</td>
+            <td>{{ work.calendar }}</td>
+            <td>
+              <button type="button" id="readBtn" (click)="readWork.emit(work)">
+                <i class="uil uil-eye"></i>
+              </button>
+              <button
+                type="button"
+                id="editBtn"
+                (click)="editWork.emit({ index: i, work: work })"
+              >
+                <i class="uil uil-edit"></i>
+              </button>
+              <button type="button" id="deleteBtn" (click)="deleteWork.emit(i)">
+                <i class="uil uil-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer id="footer">
+      <span class="showEntries"
+        >Showing {{ startIndex + 1 }} to {{ endIndex }} of
+        {{ totalEntries }} entries</span
+      >
+      <div class="pagination">
+        <button
+          type="button"
+          (click)="prev.emit()"
+          [disabled]="currentIndex === 1"
+        >
+          <i class="uil uil-angle-left-b"></i>
+        </button>
+        <button
+          type="button"
+          *ngFor="let i of [].constructor(maxIndex); let idx = index"
+          (click)="pageChange.emit(idx + 1)"
+        >
+          {{ idx + 1 }}
+        </button>
+        <button
+          type="button"
+          (click)="next.emit()"
+          [disabled]="currentIndex === maxIndex"
+        >
+          <i class="uil uil-angle-right-b"></i>
+        </button>
+      </div>
+    </footer>
+  </div>
+</div>

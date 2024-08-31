@@ -1,0 +1,159 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">{{ modalTitle }}</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="myForm">
+        <div>
+          <div class="imgholder">
+            <label
+              for="uploadimg"
+              class="upload"
+              [class.inActive]="!popupImgActive"
+            >
+              <input
+                type="file"
+                id="uploadimg"
+                formControlName="aboutImage"
+                (change)="handleFileChange($event)"
+              />
+
+              <i class="uil uil-plus"></i>
+            </label>
+            <img
+              [src]="imageURL + selectedImage || 'Photo-1.jpg'"
+              alt=""
+              width="150"
+              height="150"
+              class="img"
+            />
+          </div>
+
+          <div class="image-msg">
+            @if(myForm.get('aboutImage')?.invalid &&
+            myForm.get('aboutImage')?.untouched){
+            @if(myForm.get('aboutImage')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ about image is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+
+        <div class="inputFieldContainer">
+          <div class="form-field">
+            <div class="form_control">
+              <label for="aboutName">Name:</label>
+              <input type="text" id="aboutName" formControlName="aboutName" />
+              @if(myForm.get('aboutName')?.invalid &&
+              myForm.get('aboutName')?.touched){
+              @if(myForm.get('aboutName')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ about name is required</p>
+              </div>
+              } }
+            </div>
+
+            <div class="form_control">
+              <label for="aboutTitle">Title:</label>
+              <input type="text" id="aboutTitle" formControlName="aboutTitle" />
+              @if(myForm.get('aboutTitle')?.invalid &&
+              myForm.get('aboutTitle')?.touched){
+              @if(myForm.get('aboutTitle')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ about title is required</p>
+              </div>
+              } }
+            </div>
+          </div>
+
+          <div class="form-field">
+            <div class="form_control">
+              <label for="aboutExperience">Experience:</label>
+              <input
+                type="number"
+                id="aboutExperience"
+                formControlName="aboutExperience"
+                required
+              />
+              @if(myForm.get('aboutExperience')?.invalid &&
+              myForm.get('aboutExperience')?.touched){
+              @if(myForm.get('aboutExperience')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ about experience is required</p>
+              </div>
+              } }
+            </div>
+
+            <div class="form_control">
+              <label for="aboutProjects">Projects:</label>
+              <input
+                type="number"
+                id="aboutProjects"
+                formControlName="aboutProjects"
+                required
+              />
+              @if(myForm.get('aboutProjects')?.invalid &&
+              myForm.get('aboutProjects')?.touched){
+              @if(myForm.get('aboutProjects')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ about projects is required</p>
+              </div>
+              } }
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="aboutCV">CV:</label>
+            <input
+              type="text"
+              id="aboutCV"
+              formControlName="aboutCV"
+              required
+            />
+            @if(myForm.get('aboutCV')?.invalid &&
+            myForm.get('aboutCV')?.touched){
+            @if(myForm.get('aboutCV')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ about cv is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form_control">
+            <label for="aboutDescription">Description:</label>
+            <textarea
+              name=""
+              id="aboutDescription"
+              cols="50"
+              rows="3"
+              formControlName="aboutDescription"
+            ></textarea>
+            @if(myForm.get('aboutDescription')?.invalid &&
+            myForm.get('aboutDescription')?.touched){
+            @if(myForm.get('aboutDescription')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ about description is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter" [class.active]="popupFooterActive">
+      <button
+        type="submit"
+        class="submitBtn"
+        [class.active]="popupBtnActive"
+        [disabled]="myForm.invalid"
+        (click)="onSubmit.emit()"
+      >
+        {{ modalButton }}
+      </button>
+    </footer>
+  </div>
+</div>

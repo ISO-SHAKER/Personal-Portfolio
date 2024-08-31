@@ -1,0 +1,156 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">{{ modalTitle }}</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="myForm">
+        <div>
+          <div class="imgholder">
+            <label
+              for="uploadimg"
+              class="upload"
+              [class.inActive]="!popupImgActive"
+            >
+              <input
+                type="file"
+                id="uploadimg"
+                formControlName="homeImage"
+                (change)="handleFileChange($event)"
+              />
+
+              <i class="uil uil-plus"></i>
+            </label>
+            <img
+              [src]="imageURL + selectedImage"
+              alt=""
+              width="150"
+              height="150"
+              class="img"
+            />
+          </div>
+
+          <div class="image-msg">
+            @if(myForm.get('homeImage')?.invalid &&
+            myForm.get('homeImage')?.untouched){
+            @if(myForm.get('homeImage')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ home image is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+
+        <div class="inputFieldContainer">
+          <div class="form-field">
+            <div class="form_control">
+              <label for="homeName">Name:</label>
+              <input type="text" id="homeName" formControlName="homeName" />
+              @if(myForm.get('homeName')?.invalid &&
+              myForm.get('homeName')?.touched){
+              @if(myForm.get('homeName')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ home main-title is required</p>
+              </div>
+              } }
+            </div>
+
+            <div class="form_control">
+              <label for="homeTitle">Title:</label>
+              <input type="text" id="homeTitle" formControlName="homeTitle" />
+              @if(myForm.get('homeTitle')?.invalid &&
+              myForm.get('homeTitle')?.touched){
+              @if(myForm.get('homeTitle')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ home sub-title is required</p>
+              </div>
+              } }
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="homeDescription">Description:</label>
+            <textarea
+              name=""
+              id="homeDescription"
+              cols="50"
+              rows="5"
+              formControlName="homeDescription"
+            ></textarea>
+            @if(myForm.get('homeDescription')?.invalid &&
+            myForm.get('homeDescription')?.touched){
+            @if(myForm.get('homeDescription')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ home description is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form-field">
+            <div class="form_control">
+              <label for="facebookAccount">Facebook:</label>
+              <input
+                type="text"
+                id="facebookAccount"
+                formControlName="facebookAccount"
+              />
+              @if(myForm.get('facebookAccount')?.invalid &&
+              myForm.get('facebookAccount')?.touched){
+              @if(myForm.get('facebookAccount')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ facebook account is required</p>
+              </div>
+              } }
+            </div>
+
+            <div class="form_control">
+              <label for="linkedinAccount">Linkedin:</label>
+              <input
+                type="text"
+                id="linkedinAccount"
+                formControlName="linkedinAccount"
+              />
+              @if(myForm.get('linkedinAccount')?.invalid &&
+              myForm.get('linkedinAccount')?.touched){
+              @if(myForm.get('linkedinAccount')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ linkedin account is required</p>
+              </div>
+              } }
+            </div>
+
+            <div class="form_control">
+              <label for="githubAccount">Github:</label>
+              <input
+                type="text"
+                id="githubAccount"
+                formControlName="githubAccount"
+              />
+              @if(myForm.get('githubAccount')?.invalid &&
+              myForm.get('githubAccount')?.touched){
+              @if(myForm.get('githubAccount')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ github account is required</p>
+              </div>
+              } }
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter" [class.active]="popupFooterActive">
+      <button
+        type="submit"
+        class="submitBtn"
+        [class.active]="popupBtnActive"
+        [disabled]="myForm.invalid"
+        (click)="onSubmit.emit()"
+      >
+        {{ modalButton }}
+      </button>
+    </footer>
+  </div>
+</div>

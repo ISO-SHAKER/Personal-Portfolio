@@ -1,0 +1,20 @@
+<app-about-table
+  [aboutData]="aboutData"
+  [imageURL]="imageURL"
+  (editData)="editData()"
+></app-about-table>
+
+<app-about-form
+  [myForm]="myForm"
+  [imageURL]="imageURL"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  [selectedImage]="aboutData.imageSrc"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+  (onFileChange)="onFileChange($event)"
+></app-about-form>

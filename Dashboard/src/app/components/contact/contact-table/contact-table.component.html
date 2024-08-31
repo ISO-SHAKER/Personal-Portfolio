@@ -1,0 +1,29 @@
+<div class="details">
+  <div class="recentOrders">
+    <div>
+      <div class="cardHeader">
+        <h2>Contact Me</h2>
+        <div class="addMemberBtn">
+          <button type="button" (click)="editData.emit()">Edit Data</button>
+        </div>
+      </div>
+
+      <table>
+        <tbody class="userInfo">
+          <tr>
+            <th>Phone</th>
+            <td id="homeMain">{{ contactData.phone }}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td id="homeSub">{{ contactData.email }}</td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td id="homeDesc">{{ contactData.location }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

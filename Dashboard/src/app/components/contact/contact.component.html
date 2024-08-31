@@ -1,0 +1,16 @@
+<app-contact-table
+  [contactData]="contactData"
+  (editData)="editData()"
+></app-contact-table>
+
+<app-contact-form
+  [myForm]="myForm"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+></app-contact-form>

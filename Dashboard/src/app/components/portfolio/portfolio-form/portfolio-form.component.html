@@ -1,0 +1,149 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">{{ modalTitle }}</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="myForm">
+        <div>
+          <div class="imgholder">
+            <label
+              for="uploadimg"
+              class="upload"
+              [class.inActive]="!popupImgActive"
+            >
+              <input
+                type="file"
+                id="uploadimg"
+                formControlName="projectImage"
+                (change)="handleFileChange($event)"
+              />
+
+              <i class="uil uil-plus"></i>
+            </label>
+            <img
+              [src]="imageURL + selectedImage"
+              alt=""
+              width="150"
+              height="150"
+              class="img"
+            />
+          </div>
+
+          <div class="image-msg">
+            @if(myForm.get('projectImage')?.invalid &&
+            myForm.get('projectImage')?.untouched){
+            @if(myForm.get('projectImage')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ project image is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+
+        <div class="inputFieldContainer">
+          <div class="form-field">
+            <div class="form_control">
+              <label for="projectTitle">Title:</label>
+              <input
+                type="text"
+                id="projectTitle"
+                formControlName="projectTitle"
+              />
+              @if(myForm.get('projectTitle')?.invalid &&
+              myForm.get('projectTitle')?.touched){
+              @if(myForm.get('projectTitle')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ portfolio title is required</p>
+              </div>
+              } }
+            </div>
+
+            <div class="form_control">
+              <label for="projectModelTitle">Model Title:</label>
+              <input
+                type="text"
+                id="projectModelTitle"
+                formControlName="projectModelTitle"
+              />
+              @if(myForm.get('projectModelTitle')?.invalid &&
+              myForm.get('projectModelTitle')?.touched){
+              @if(myForm.get('projectModelTitle')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ portfolio model title is required</p>
+              </div>
+              } }
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="projectDescription">Description:</label>
+            <textarea
+              name=""
+              id="projectDescription"
+              cols="30"
+              rows="3"
+              formControlName="projectDescription"
+            ></textarea>
+            @if(myForm.get('projectDescription')?.invalid &&
+            myForm.get('projectDescription')?.touched){
+            @if(myForm.get('projectDescription')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ portfolio description is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form_control">
+            <label for="projectLink">Link:</label>
+            <input type="text" id="projectLink" formControlName="projectLink" />
+            @if(myForm.get('projectLink')?.invalid &&
+            myForm.get('projectLink')?.touched){
+            @if(myForm.get('projectLink')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ portfolio link is required</p>
+            </div>
+            } }
+          </div>
+
+          <div class="form-field">
+            <div
+              class="form_control"
+              id="features-control"
+              formArrayName="features"
+            >
+              <label for="features">Features:</label>
+              <div class="features-container">
+                <input
+                  type="text"
+                  id="features"
+                  class="features"
+                  *ngFor="let feature of features?.controls; let i = index"
+                  [formControlName]="i"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button id="addFeature" type="button" (click)="addFeature.emit()">
+            Add Feature
+          </button>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter" [class.active]="popupFooterActive">
+      <button
+        type="submit"
+        class="submitBtn"
+        [class.active]="popupBtnActive"
+        [disabled]="myForm.invalid"
+        (click)="onSubmit.emit()"
+      >
+        {{ modalButton }}
+      </button>
+    </footer>
+  </div>
+</div>

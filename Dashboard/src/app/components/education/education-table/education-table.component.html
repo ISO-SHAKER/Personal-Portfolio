@@ -1,0 +1,96 @@
+<div class="details">
+  <div class="recentOrders">
+    <div>
+      <div class="cardHeader">
+        <h2>Education</h2>
+        <div class="addMemberBtn">
+          <button type="button" (click)="addEducation.emit()">
+            New Education
+          </button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr class="heading">
+            <th>SL No</th>
+            <th>Main Title</th>
+            <th>Sub Title</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="educations.length === 0" class="employeeDetails">
+            <td class="empty" colspan="6" align="center">
+              No data available in table
+            </td>
+          </tr>
+          <tr
+            *ngFor="let education of educations; let i = index"
+            class="employeeDetails"
+          >
+            <td>{{ startIndex + i + 1 }}</td>
+
+            <td>{{ education.mainTitle }}</td>
+            <td>{{ education.subTitle }}</td>
+            <td>{{ education.calendar }}</td>
+            <td>
+              <button
+                type="button"
+                id="readBtn"
+                (click)="readEducation.emit(education)"
+              >
+                <i class="uil uil-eye"></i>
+              </button>
+              <button
+                type="button"
+                id="editBtn"
+                (click)="editEducation.emit({ index: i, education: education })"
+              >
+                <i class="uil uil-edit"></i>
+              </button>
+              <button
+                type="button"
+                id="deleteBtn"
+                (click)="deleteEducation.emit(i)"
+              >
+                <i class="uil uil-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer id="footer">
+      <span class="showEntries"
+        >Showing {{ startIndex + 1 }} to {{ endIndex }} of
+        {{ totalEntries }} entries</span
+      >
+      <div class="pagination">
+        <button
+          type="button"
+          (click)="prev.emit()"
+          [disabled]="currentIndex === 1"
+        >
+          <i class="uil uil-angle-left-b"></i>
+        </button>
+        <button
+          type="button"
+          *ngFor="let i of [].constructor(maxIndex); let idx = index"
+          (click)="pageChange.emit(idx + 1)"
+        >
+          {{ idx + 1 }}
+        </button>
+        <button
+          type="button"
+          (click)="next.emit()"
+          [disabled]="currentIndex === maxIndex"
+        >
+          <i class="uil uil-angle-right-b"></i>
+        </button>
+      </div>
+    </footer>
+  </div>
+</div>

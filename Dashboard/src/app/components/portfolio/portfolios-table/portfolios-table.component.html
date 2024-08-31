@@ -1,0 +1,116 @@
+<div class="details">
+  <div class="recentOrders">
+    <div>
+      <div class="cardHeader">
+        <h2>Portfolio</h2>
+        <div class="addMemberBtn">
+          <button type="button" (click)="addProject.emit()">New Project</button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr class="heading">
+            <th>SL No</th>
+            <th>Picture</th>
+            <th>Title</th>
+            <th>Model Title</th>
+            <th>Description</th>
+            <th>Link</th>
+            <th>Features</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="projects.length === 0" class="projectsDetails">
+            <td class="empty" colspan="8" align="center">
+              No data available in table
+            </td>
+          </tr>
+          <tr
+            *ngFor="let project of projects; let i = index"
+            class="projectsDetails"
+          >
+            <td>{{ startIndex + i + 1 }}</td>
+            <td>
+              <img
+                [src]="imageURL + project.imgSrc"
+                alt="project image"
+                width="40"
+                height="40"
+              />
+            </td>
+            <td>{{ project.title }}</td>
+            <td>{{ project.modalTitle }}</td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.githubURL }}</td>
+            <td class="features-data">
+              <ul>
+                @for (feature of project.features.join(',').split(','); track
+                $index) {
+                <li>
+                  <i class="uil uil-check-circle"></i>
+                  {{ feature }}
+                </li>
+                }
+              </ul>
+            </td>
+            <td>
+              <button
+                type="button"
+                id="readBtn"
+                (click)="readProject.emit(project)"
+              >
+                <i class="uil uil-eye"></i>
+              </button>
+              <button
+                type="button"
+                id="editBtn"
+                (click)="editProject.emit({ index: i, project: project })"
+              >
+                <i class="uil uil-edit"></i>
+              </button>
+              <button
+                type="button"
+                id="deleteBtn"
+                (click)="deleteProject.emit(i)"
+              >
+                <i class="uil uil-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer id="footer">
+      <span class="showEntries"
+        >Showing {{ startIndex + 1 }} to {{ endIndex }} of
+        {{ totalEntries }} entries</span
+      >
+      <div class="pagination">
+        <button
+          type="button"
+          (click)="prev.emit()"
+          [disabled]="currentIndex === 1"
+        >
+          <i class="uil uil-angle-left-b"></i>
+        </button>
+        <button
+          type="button"
+          *ngFor="let i of [].constructor(maxIndex); let idx = index"
+          (click)="pageChange.emit(idx + 1)"
+        >
+          {{ idx + 1 }}
+        </button>
+        <button
+          type="button"
+          (click)="next.emit()"
+          [disabled]="currentIndex === maxIndex"
+        >
+          <i class="uil uil-angle-right-b"></i>
+        </button>
+      </div>
+    </footer>
+  </div>
+</div>

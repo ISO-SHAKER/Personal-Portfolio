@@ -1,0 +1,33 @@
+<app-portfolios-table
+  [projects]="paginatedData"
+  [startIndex]="startIndex"
+  [endIndex]="endIndex"
+  [totalEntries]="arrayLength"
+  [currentIndex]="currentIndex"
+  [maxIndex]="maxIndex"
+  [imageURL]="imageURL"
+  (addProject)="addProject()"
+  (readProject)="readProject($event)"
+  (editProject)="editProject($event.index, $event.project)"
+  (deleteProject)="deleteProject($event)"
+  (pageChange)="paginationBtn($event)"
+  (prev)="prev()"
+  (next)="next()"
+></app-portfolios-table>
+
+<app-portfolio-form
+  [myForm]="myForm"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  [selectedImage]="selectedImage"
+  [imageURL]="imageURL"
+  [features]="features"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+  (addFeature)="addFeature()"
+  (onFileChange)="onFileChange($event)"
+></app-portfolio-form>

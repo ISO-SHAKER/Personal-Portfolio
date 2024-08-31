@@ -1,0 +1,29 @@
+<app-services-table
+  [services]="paginatedData"
+  [startIndex]="startIndex"
+  [endIndex]="endIndex"
+  [totalEntries]="arrayLength"
+  [currentIndex]="currentIndex"
+  [maxIndex]="maxIndex"
+  (addService)="addService()"
+  (readService)="readService($event)"
+  (editService)="editService($event.index, $event.service)"
+  (deleteService)="deleteService($event)"
+  (pageChange)="paginationBtn($event)"
+  (prev)="prev()"
+  (next)="next()"
+></app-services-table>
+
+<app-service-form
+  [myForm]="myForm"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  [provisions]="provisions"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+  (addProvision)="addProvision()"
+></app-service-form>

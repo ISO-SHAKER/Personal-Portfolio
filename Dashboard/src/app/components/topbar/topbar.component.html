@@ -1,0 +1,14 @@
+<div class="topbar">
+  <div class="toggle" (click)="showNav()"><i class="uil uil-bars"></i></div>
+  <div class="search">
+    <label>
+      <input
+        id="search"
+        type="text"
+        placeholder="Search here"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+      />
+    </label>
+  </div>
+</div>

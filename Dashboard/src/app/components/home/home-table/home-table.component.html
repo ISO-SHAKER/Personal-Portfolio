@@ -1,0 +1,53 @@
+<div class="details">
+  <div class="recentOrders">
+    <div>
+      <div class="cardHeader">
+        <h2>Home</h2>
+        <div class="addMemberBtn">
+          <button type="button" (click)="editData.emit()">Edit Data</button>
+        </div>
+      </div>
+
+      <table>
+        <tbody class="userInfo">
+          <tr>
+            <th>Picture</th>
+            <td>
+              <img
+                [src]="imageURL + homeData.imageSrc"
+                alt="home image"
+                width="100"
+                height="100"
+                id="homePic"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <td id="homeMain">{{ homeData.name }}</td>
+          </tr>
+          <tr>
+            <th>Title</th>
+            <td id="homeSub">{{ homeData.title }}</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td id="homeDesc">{{ homeData.description }}</td>
+          </tr>
+          <tr>
+            <th>Facebook</th>
+            <td id="homefacebook">{{ homeData.facebook }}</td>
+          </tr>
+          <tr>
+            <th>LinkedIn</th>
+            <td id="homeLinkedin">{{ homeData.linkedin }}</td>
+          </tr>
+          <tr>
+            <th>GitHub</th>
+            <td id="homeGithub">{{ homeData.github }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

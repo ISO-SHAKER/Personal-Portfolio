@@ -1,0 +1,27 @@
+<app-work-table
+  [works]="paginatedData"
+  [startIndex]="startIndex"
+  [endIndex]="endIndex"
+  [totalEntries]="arrayLength"
+  [currentIndex]="currentIndex"
+  [maxIndex]="maxIndex"
+  (addWork)="addWork()"
+  (readWork)="readWork($event)"
+  (editWork)="editWork($event.index, $event.work)"
+  (deleteWork)="deleteWork($event)"
+  (pageChange)="paginationBtn($event)"
+  (prev)="prev()"
+  (next)="next()"
+></app-work-table>
+
+<app-work-form
+  [myForm]="myForm"
+  [popupActive]="popupActive"
+  [popupFooterActive]="popupFooterActive"
+  [popupBtnActive]="popupBtnActive"
+  [popupImgActive]="popupImgActive"
+  [modalTitle]="modalTitle"
+  [modalButton]="modalButton"
+  (closeModal)="closeModal()"
+  (onSubmit)="onSubmit()"
+></app-work-form>
