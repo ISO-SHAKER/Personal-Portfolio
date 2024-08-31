@@ -1,0 +1,114 @@
+/* ========== Fonts ========== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+/* ========== General Styles ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* ========== Table ========== */
+
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.details .recentOrders {
+  position: relative;
+  background: #191627;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: auto;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 1rem;
+}
+
+.cardHeader h2 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+/* ===== Skills Table ===== */
+
+.cardHeader.skill-outer {
+  width: 100%;
+}
+
+.skill-outer-content {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-outer-content p {
+  color: lightgray;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.skill-outer-btns {
+  width: 40%;
+}
+
+.addMemberBtn {
+  margin-top: 1rem;
+}
+
+.addMemberBtn button {
+  padding: 9px 14px;
+  color: white;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+/* ========== Media Query ========== */
+
+@media (max-width: 768px) {
+  .details .recentOrders {
+    overflow-x: scroll;
+  }
+  .details .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skill-outer-content {
+    width: 100%;
+  }
+
+  .skill-outer-btns {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}

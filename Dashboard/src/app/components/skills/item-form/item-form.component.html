@@ -1,0 +1,73 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">Skill Item</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="itemForm">
+        <div class="inputFieldContainer">
+          <div>
+            <div class="imgholder">
+              <label for="uploadimg" class="upload">
+                <input
+                  type="file"
+                  id="uploadimg"
+                  formControlName="skillItemImage"
+                  (change)="handleFileChange($event)"
+                />
+
+                <i class="uil uil-plus"></i>
+              </label>
+              <img
+                [src]="imageURL + selectedImage"
+                alt="skill item image"
+                width="150"
+                height="150"
+                class="img"
+              />
+            </div>
+
+            <div class="image-msg">
+              @if(itemForm.get('skillItemImage')?.invalid &&
+              itemForm.get('skillItemImage')?.untouched){
+              @if(itemForm.get('skillItemImage')?.errors?.['required']){
+              <div class="msg">
+                <p>❌ skill item image is required</p>
+              </div>
+              } }
+            </div>
+          </div>
+
+          <div class="form_control">
+            <label for="skillItemName">Name:</label>
+            <input
+              type="text"
+              id="skillItemName"
+              formControlName="skillItemName"
+            />
+            @if(itemForm.get('skillItemName')?.invalid &&
+            itemForm.get('skillItemName')?.touched){
+            @if(itemForm.get('skillItemName')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ skill item name is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter active">
+      <button
+        type="submit"
+        class="submitBtn active"
+        [disabled]="itemForm.invalid"
+        (click)="onSubmitItem.emit()"
+      >
+        Save
+      </button>
+    </footer>
+  </div>
+</div>

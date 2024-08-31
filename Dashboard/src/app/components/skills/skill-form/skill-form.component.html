@@ -1,0 +1,56 @@
+<div class="dark_bg" [class.active]="popupActive">
+  <div class="popup" [class.active]="popupActive">
+    <header>
+      <h2 class="modalTitle">Skill</h2>
+      <button type="button" class="closeBtn" (click)="closeModal.emit()">
+        <i class="uil uil-multiply"></i>
+      </button>
+    </header>
+    <div class="body">
+      <form id="modalform" [formGroup]="skillForm">
+        <div class="inputFieldContainer">
+          <div class="form_control">
+            <label for="skillCategory">Category:</label>
+            <input
+              type="text"
+              id="skillCategory"
+              formControlName="skillCategory"
+            />
+            @if(skillForm.get('skillCategory')?.invalid &&
+            skillForm.get('skillCategory')?.touched){
+            @if(skillForm.get('skillCategory')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ skill category is required</p>
+            </div>
+            } }
+          </div>
+          <div class="form_control">
+            <label for="skillExperience">Years of Experience:</label>
+            <input
+              type="number"
+              id="skillExperience"
+              formControlName="skillExperience"
+            />
+            @if(skillForm.get('skillExperience')?.invalid &&
+            skillForm.get('skillExperience')?.touched){
+            @if(skillForm.get('skillExperience')?.errors?.['required']){
+            <div class="msg">
+              <p>❌ skill experience is required</p>
+            </div>
+            } }
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="popupFooter active">
+      <button
+        type="submit"
+        class="submitBtn active"
+        [disabled]="skillForm.invalid"
+        (click)="onSubmitSkill.emit()"
+      >
+        Save
+      </button>
+    </footer>
+  </div>
+</div>

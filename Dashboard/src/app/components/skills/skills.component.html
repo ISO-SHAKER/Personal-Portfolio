@@ -1,0 +1,34 @@
+<!-- ===== Skills Header ==== -->
+<app-skills-header (addSkill)="addSkill()"> </app-skills-header>
+
+<!-- ===== Skills Table ==== -->
+<app-skills-table
+  [skills]="skills"
+  [imageURL]="imageURL"
+  (editSkill)="editSkill($event.index, $event.skill)"
+  (deleteSkill)="deleteSkill($event)"
+  (addSkillItem)="addSkillItem($event.skillIndex)"
+  (editSkillItem)="
+    editSkillItem($event.skillIndex, $event.itemIndex, $event.item)
+  "
+  (deleteSkillItem)="deleteSkillItem($event.skillIndex, $event.itemIndex)"
+></app-skills-table>
+
+<!-- ===== Skill Form ==== -->
+<app-skill-form
+  [skillForm]="skillForm"
+  [popupActive]="skillPopupActive"
+  (closeModal)="closeSkillModal()"
+  (onSubmitSkill)="onSubmitSkill()"
+></app-skill-form>
+
+<!-- ===== Skill-Item Form ==== -->
+<app-item-form
+  [itemForm]="skillItemForm"
+  [popupActive]="itemPopupActive"
+  [imageURL]="imageURL"
+  [selectedImage]="selectedImage"
+  (onFileChange)="onFileChange($event)"
+  (closeModal)="closeItemModal()"
+  (onSubmitItem)="onSubmitSkillItem()"
+></app-item-form>
