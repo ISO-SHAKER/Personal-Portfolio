@@ -14,3 +14,6 @@ This is a personal portfolio website built using the Angular framework. The port
 
  - ☑ Portfolio ✏️ ng serve
  - ☑ Backend ✏️ nodemon index.js
+
+## Issues
+Unfortunately, there is an issue with the dashboard's photos. I have spent a considerable amount of time trying to resolve it, but have not yet succeeded.
