@@ -43,13 +43,22 @@ const addProject = asyncWrapper(async (req, res, next) => {
     return next(error);
   }
 
-  const { title, modalTitle, description, githubURL, features, imageSrc } = req.body;
+  if (req.file) {
+    req.body.imgSrc = req.file.filename;
+  }
+
+  if (req.file) {
+    req.body.imgSrc = req.file.filename;
+  }
+
+  const { title, modalTitle, description, githubURL, features, imgSrc } = req.body;
+  
   const newProject = new Project({
     title,
     modalTitle,
     description,
     features,
-    imageSrc,
+    imgSrc,
     githubURL
   });
   await newProject.save();
@@ -60,6 +69,11 @@ const addProject = asyncWrapper(async (req, res, next) => {
 });
 
 const updateProject = asyncWrapper(async (req, res, next) => {
+
+  if (req.file) {
+    req.body.imgSrc = req.file.filename;
+  }
+  
   let updatedProject = await Project.findByIdAndUpdate(
     req.params.id,
     { $set: req.body },
